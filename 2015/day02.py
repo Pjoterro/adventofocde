@@ -5,7 +5,7 @@ test_result1 = """101"""
 test_result2 = """48"""
 
 ### input file path
-input_path = ".\AoC 2015\input_day2.txt"
+input_path = ".\\2015\input_day02.txt"
 
 ### functions
 def get_dimensions(input):

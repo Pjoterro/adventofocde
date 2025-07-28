@@ -5,7 +5,7 @@ test2 = """()())"""
 test_result2 = """5"""
 
 ### input file path
-input_path = ".\AoC 2015\input_day1.txt"
+input_path = """.\\2015\input_day01.txt"""
 
 ### functions
 def resolve_floor(input):
