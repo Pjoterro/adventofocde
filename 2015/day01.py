@@ -34,8 +34,8 @@ def find_basement(input):
     return -1
 
 ### main 
-mode = "TASK"
-# mode = "TEST"
+# mode = "TASK"
+mode = "TEST"
 
 print("\nMode: " + mode)
 if mode == "TASK":
@@ -45,8 +45,8 @@ elif mode == "TEST":
     input1 = test1
     input2 = test2
 
-result1 = resolve_floor(input)
-result2 = find_basement(input)
+result1 = resolve_floor(input1)
+result2 = find_basement(input2)
 
 if mode == "TASK":
     print("Task 1: " + str(result1))
