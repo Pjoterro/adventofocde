@@ -56,7 +56,6 @@ if mode == "TASK":
     print("Task 1: " + str(result1))
     print("Task 2: " + str(result2))
 elif mode == "TEST":
-    pass
     print("Test 1: " + str(int(test_result1) == result1) + "\n    Expected test result 1: " + str(test_result1) + "   |   Actual test result 1: " + str(result1))
     print("Test 2: " + str(int(test_result2) == result2) + "\n    Expected test result 2: " + str(test_result2) + "   |   Actual test result 2: " + str(result2))
 print()
