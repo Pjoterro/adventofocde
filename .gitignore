@@ -1,1 +1,3 @@
-input_day*.txt
+*input*
+.idea
+.vscode
