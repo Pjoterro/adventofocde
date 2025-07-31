@@ -3,11 +3,9 @@ test = """"""
 test_result = """"""
 
 ### input file path
-input_path = """.\\2015\input_day_TEMPLATE.txt""" # specific for windows
+input_path = """.\\2015\input_day06.txt""" # specific for windows
 
 ### functions
-def TEMPLATE(input):
-    pass
 
 ### main 
 # mode = "TASK"
