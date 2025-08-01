@@ -118,9 +118,6 @@ elif mode == "TEST":
 lamp_map = create_map(map_size)
 for line in instruction.splitlines():
     apply_changes(lamp_map, translate_line(line))
-    # print(line)
-    # print_map(lamp_map)
-    # print()
 result1 = get_lit_lamps(lamp_map)
 
 new_lamp_map = create_new_map(map_size)
