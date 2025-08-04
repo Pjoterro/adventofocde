@@ -47,25 +47,35 @@ def translate_line(line):
         
 #TODO: sth wrong with first if - redo
 def perform_action(translation): # [action, input1, input2, output]
-    if translation[0] is not "PROVIDE" and (translation[1] not in wire_dict.keys() or (translation[2] not in wire_dict.keys() and not isinstance(translation[2], int))):
-        return False # operation not succesful, not enough inputs
     if translation[0] == "PROVIDE":
+        if not translation[1].isdigit() and translation[1] not in wire_dict.keys():
+            return False
         wire_dict[translation[3]] = int(translation[1])
     elif translation[0] == "AND":
+        if (not translation[1].isdigit() and translation[1] not in wire_dict.keys()) or translation[2] not in wire_dict.keys():
+            return False
         wire_dict[translation[3]] = wire_dict[translation[1]] & wire_dict[translation[2]]
     elif translation[0] == "OR":
+        if translation[1] not in wire_dict.keys() or translation[2] not in wire_dict.keys():
+            return False
         wire_dict[translation[3]] = wire_dict[translation[1]] | wire_dict[translation[2]]
     elif translation[0] == "LSHIFT":
+        if translation[1] not in wire_dict.keys():
+            return False
         wire_dict[translation[3]] = wire_dict[translation[1]] << int(translation[2])
     elif translation[0] == "RSHIFT":
+        if translation[1] not in wire_dict.keys():
+            return False
         wire_dict[translation[3]] = wire_dict[translation[1]] >> int(translation[2])
     elif translation[0] == "NOT":
+        if translation[1] not in wire_dict.keys():
+            return False
         wire_dict[translation[3]] = ~wire_dict[translation[1]]
     return True
 
 ### main 
-# mode = "TASK"
-mode = "TEST"
+mode = "TASK"
+# mode = "TEST"
 
 print("\nMode: " + mode)
 if mode == "TASK":
@@ -81,7 +91,7 @@ while True:
     for task in task_list:
         if not perform_action(translate_line(task)):
             future_task_list.append(task)
-    print(wire_dict)
+    # print(wire_dict)
     if len(future_task_list) > 0:
         task_list = future_task_list.copy()
         future_task_list.clear()
