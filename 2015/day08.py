@@ -21,7 +21,6 @@ def count_line(old_line):
                 i += 1
         i += 1
     in_memory -= 2
-    # print(line + " | all_char: " + str(len(line)) + " | in_memory: " + str(in_memory))
     return len(line), in_memory
 
 def count_difference(input):
