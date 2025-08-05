@@ -24,6 +24,15 @@ def count_line(old_line):
     # print(line + " | all_char: " + str(len(line)) + " | in_memory: " + str(in_memory))
     return len(line), in_memory
 
+def count_difference(input):
+    all_chars = 0
+    all_in_memory = 0
+    for line in input.splitlines():
+        results = count_line(line)
+        all_chars += results[0]
+        all_in_memory += results[1]
+    return all_chars - all_in_memory
+
 def escape_and_count(line):
     old_len = len(line)
     new_line = '\"'
@@ -48,16 +57,6 @@ def count_new_len(input):
         old_lens += buffor[0]
         new_lens += buffor[1]
     return new_lens - old_lens
-
-
-def count_difference(input):
-    all_chars = 0
-    all_in_memory = 0
-    for line in input.splitlines():
-        results = count_line(line)
-        all_chars += results[0]
-        all_in_memory += results[1]
-    return all_chars - all_in_memory
 
 ### main 
 # mode = "TEST"
