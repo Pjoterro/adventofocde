@@ -56,11 +56,3 @@ for i in range(len(all_possible_ways)):
         longest_way_index = i
 print("Shortest way: " + str(results[shortest_way_index]))
 print("Longest way: " + str(results[longest_way_index]))
-
-if mode == "TASK":
-    print("Task 1: " + str(result))
-    # print("Task 2: " + str(result))
-elif mode == "TEST":
-    # print("Test 1: " + str(int(test_result) == result) + "\n    Expected test result 1: " + str(test_result) + "   |   Actual test result 1: " + str(result))
-    # print("Test 2: " + str(int(test_result) == result) + "\n    Expected test result 2: " + str(test_result) + "   |   Actual test result 2: " + str(result))
-    print()

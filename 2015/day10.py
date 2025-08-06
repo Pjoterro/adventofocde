@@ -23,6 +23,7 @@ def evaluate(number):
             current_digit = number[i+1]
             digit_count = 1
         i += 1
+        
     result += str(digit_count) + current_digit
     return result
     
