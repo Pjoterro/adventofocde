@@ -10,8 +10,8 @@ def TEMPLATE(input):
     pass
 
 ### main 
-# mode = "TASK"
 mode = "TEST"
+# mode = "TASK"
 
 print("\nMode: " + mode)
 if mode == "TASK":
