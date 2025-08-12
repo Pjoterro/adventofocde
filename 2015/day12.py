@@ -6,6 +6,8 @@ test_result = """18"""
 input_path = """.\\2015\input_day12.txt""" # specific for windows
 
 ### functions
+#TODO: part2
+
 def add_one_line(line):
     num_symb = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-"]
     result = 0

@@ -20,6 +20,8 @@ test_result2 = ["David",  "Alice",  "Bob",  "Carol"]
 input_path = """.\\2015\input_day13.txt""" # specific for windows
 
 ### functions
+#TODO: part2
+
 def get_all_guests_combinations(input_mood):
     guests = set()
     for line in input_mood.splitlines():

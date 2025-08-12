@@ -12,6 +12,8 @@ input_path = """.\\2015\input_day15.txt""" # specific for windows
 task_teaspoons = 100
 
 ### functions
+#TODO: part2
+
 def get_ingridients(input_raw):
     result = []
     for line in input_raw.splitlines():

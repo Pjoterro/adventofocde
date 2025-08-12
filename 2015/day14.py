@@ -10,6 +10,8 @@ input_path = """.\\2015\input_day14.txt""" # specific for windows
 task_duration = 2503
 
 ### functions
+#TODO: part2
+
 def get_reindeer(input_raw):
     result = []
     for line in input_raw.splitlines():
