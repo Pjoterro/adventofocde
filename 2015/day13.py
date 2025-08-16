@@ -54,6 +54,28 @@ def combination_mood(combination, input_mood):
             mood += get_pair_mood(combination[i], combination[0], input_mood)
         i += 1
     return mood
+
+def combination_mood_v2(combination, input_mood):
+    result = 0
+    mood = []
+    i = 0
+    while i < len(combination):
+        if i < len(combination) - 1:
+            mood.append(get_pair_mood(combination[i], combination[i+1], input_mood))
+        elif i == len(combination) - 1:
+            mood.append(get_pair_mood(combination[i], combination[0], input_mood))
+        i += 1
+    i = 0
+    while i < len(mood):
+        result_potential = 0
+        mood_v2 = mood
+        mood_v2[i] = 0
+        for mo in mood_v2:
+            result_potential += mo
+        if result_potential > result:
+            result = result_potential
+        i += 1
+    return result
     
 def find_best_mood(input_mood):
     guests_combinations = get_all_guests_combinations(input_mood)
@@ -63,8 +85,16 @@ def find_best_mood(input_mood):
         if mood < combination_mood(comb, input_mood):
             mood = combination_mood(comb, input_mood)
             best_comb = comb
-    # print(best_comb)
-    # print(mood)
+    return mood
+
+def find_best_mood_v2(input_mood):
+    guests_combinations = get_all_guests_combinations(input_mood)
+    mood = 0
+    best_comb = []
+    for comb in guests_combinations:
+        if mood < combination_mood_v2(comb, input_mood):
+            mood = combination_mood_v2(comb, input_mood)
+            best_comb = comb
     return mood
 
 ### main 
@@ -79,11 +109,13 @@ elif mode == "TEST":
     input = test_input
 
 result = find_best_mood(input)
+result2 = find_best_mood_v2(input)
 
 if mode == "TASK":
     print("Task 1: " + str(result))
-    # print("Task 2: " + str(result))
+    print("Task 2: " + str(result2))
 elif mode == "TEST":
     print("Test 1: " + str(int(test_result1) == result) + "\n    Expected test result 1: " + str(test_result1) + "   |   Actual test result 1: " + str(result))
-    # print("Test 2: " + str(int(test_result) == result) + "\n    Expected test result 2: " + str(test_result) + "   |   Actual test result 2: " + str(result))
+    print("Test 2: " + str(result2))
+    # print("Test 2: " + str(int(test_result) == result2) + "\n    Expected test result 2: " + str(test_result) + "   |   Actual test result 2: " + str(result2))
 print()
