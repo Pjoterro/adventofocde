@@ -26,7 +26,7 @@ def check_for_red(bracket):
     current_level = 0
     if bracket[0] == "[":
         return False
-    while i < len(bracket)
+    while i < len(bracket):
         if bracket[i] == "r" and current_level == 1:
             if bracket[i+1] == "e" and bracket[i+2] == "d":
                 return True
@@ -48,6 +48,7 @@ def get_subbrackets(bracket):
         elif bracket[i] == "]" or bracket[i] == "}":
             current_level -= 1
             if current_level == 1:
+                buffor += bracket[i]
                 result.append(buffor)
                 buffor = ""
         if current_level > 1:
@@ -63,16 +64,24 @@ def sum_bracket(bracket):
     current_level = 0
     num_str = ""
     while i < len(bracket):
-        if current_level == 1:
+        if bracket[i] == "[" or bracket[i] == "{":
+            current_level += 1
+        elif current_level == 1:
             if not num_flag:
-                if line[bracket] in num_symb:
+                if bracket[i] in num_symb:
                     num_flag = True
                     num_str += bracket[i] 
             else:
-                
-        else:
-            pass
+                if bracket[i] in num_symb:
+                    num_str += bracket[i]
+                else:
+                    num_flag = False
+                    result += int(num_str)
+                    num_str = ""
+        elif bracket[i] == "]" or bracket [i] == "}":
+            current_level -= 1
         i += 1
+    return result
 
 def add_one_line(line):
     num_symb = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-"]
@@ -114,13 +123,15 @@ if mode == "TASK":
     input = file.read()
 elif mode == "TEST":
     input = test_input
+    input2 = test_input_2
 
 result = sum_all_file(input)
+result2 = assess_bracket(input)
 
 if mode == "TASK":
     print("Task 1: " + str(result))
-    # print("Task 2: " + str(result))
+    print("Task 2: " + str(result2))
 elif mode == "TEST":
     print("Test 1: " + str(int(test_result) == result) + "\n    Expected test result 1: " + str(test_result) + "   |   Actual test result 1: " + str(result))
-    # print("Test 2: " + str(int(test_result) == result) + "\n    Expected test result 2: " + str(test_result) + "   |   Actual test result 2: " + str(result))
+    print("Test 2: " + str(int(test_result_2) == result2) + "\n    Expected test result 2: " + str(test_result_2) + "   |   Actual test result 2: " + str(result2))
 print()
