@@ -1,6 +1,6 @@
 ### test cases:
 test_input = """Comet can fly 14 km/s for 10 seconds, but then must rest for 127 seconds.
-Dancer can fly 16 km/s for 11 seconds, but then must rest for 168 seconds."""
+Dancer can fly 16 km/s for 11 seconds, but then must rest for 162 seconds."""
 test_duration = 1000
 test_result1 = "Comet"
 test_result2 = [1120, 1056]
@@ -101,7 +101,7 @@ result2 = evaluate_all_by_sec(input, duration)
 
 if mode == "TASK":
     print("Task 1: " + str(result))
-    # print("Task 2: " + str(result))
+    print("Task 2: " + str(result2))
 elif mode == "TEST":
     print("Test 1: " + str(int(test_result2[0]) == result) + "\n    Expected test result 1: " + str(test_result2[0]) + "   |   Actual test result 1: " + str(result))
     print("Test 2: " + str(int(test_result3) == result2) + "\n    Expected test result 2: " + str(test_result3) + "   |   Actual test result 2: " + str(result2))
