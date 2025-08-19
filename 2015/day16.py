@@ -24,7 +24,7 @@ def parse_aunt_candidate(line): # Sue 1: goldfish: 6, trees: 9, akitas: 0
     result["Sue"] = elements[1][:-1]
     i = 2
     while i < len(elements): # = 8
-        result[elements[i]] = elements[i+1].strip(",")
+        result[elements[i]] = int(elements[i+1].strip(","))
         i += 2
     return result
 
@@ -38,13 +38,30 @@ def is_correct_sue(candidate):
     correct_aunt = dict()
     elements = correct_sue.splitlines()
     for ele in elements:
-        correct_aunt[ele.split(" ")[0]] = ele.split(" ")[1]
+        correct_aunt[ele.split(" ")[0]] = int(ele.split(" ")[1])
     for key in candidate.keys():
         if key == "Sue":
             continue
         if candidate[key] != correct_aunt[key]:
             return False
-    print(candidate["Sue"])
+    return True
+
+def is_correct_sue_v2(candidate):
+    correct_aunt = dict()
+    elements = correct_sue.splitlines()
+    for ele in elements:
+        correct_aunt[ele.split(" ")[0]] = int(ele.split(" ")[1])
+    for key in candidate.keys():
+        if key == "Sue":
+            continue
+        elif key == "cats:" or key == "trees:":
+            if candidate[key] <= correct_aunt[key]:
+                return False
+        elif key == "pomeranians:" or key == "goldfish:":
+            if candidate[key] >= correct_aunt[key]:
+                return False
+        elif candidate[key] != correct_aunt[key]:
+            return False
     return True
 
 ### main 
@@ -60,14 +77,14 @@ elif mode == "TEST":
 
 for aunt in parse_input(input):
     if is_correct_sue(aunt):
-        print(aunt)
+        result1 = aunt["Sue"]
+    if is_correct_sue_v2(aunt):
+        result2 = aunt["Sue"]    
 
 if mode == "TASK":
     print()
-    # print("Task 1: " + str(result))
-    # print("Task 2: " + str(result))
+    print("Task 1: " + str(result1))
+    print("Task 2: " + str(result2))
 elif mode == "TEST":
     print()
-    # print("Test 1: " + str(int(test_result) == result) + "\n    Expected test result 1: " + str(test_result) + "   |   Actual test result 1: " + str(result))
-    # print("Test 2: " + str(int(test_result) == result) + "\n    Expected test result 2: " + str(test_result) + "   |   Actual test result 2: " + str(result))
 print()

@@ -44,6 +44,7 @@ def create_all_ingr_comb(teaspoons, ingr):
     for comb in list(itertools.permutations(amount, len(ingr))):
         if list_sum(comb) == 100:
             result.append(comb)
+    print("Combinations created!")
     return result # [ingr1, ingr2] | [ingr1, ingr2, ingr3, ingr4]
 
 def eval_recipe(recipe, ingridients):  # [name, cap, dur, flav, text, cal]
