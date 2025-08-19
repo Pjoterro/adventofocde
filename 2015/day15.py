@@ -6,6 +6,7 @@ Cinnamon: capacity 2, durability 3, flavor -2, texture -1, calories 3"""
 test_teaspoons = 100
 test_result1 = [44, 56]
 test_result2 = 62842880
+test_result3 = 57600000
 
 ### input file path
 input_path = """.\\2015\input_day15.txt""" # specific for windows
@@ -68,6 +69,33 @@ def eval_recipe(recipe, ingridients):  # [name, cap, dur, flav, text, cal]
     result = capacity * durability * flavor * texture
     return result
 
+def eval_recipe_v2(recipe, ingridients):  # [name, cap, dur, flav, text, cal]
+    capacity = 0
+    durability = 0
+    flavor = 0
+    texture = 0
+    i = 0
+    cal = 0
+    while i < len(recipe):
+        capacity += recipe[i] * ingridients[i][1]
+        durability += recipe[i] * ingridients[i][2]
+        flavor += recipe[i] * ingridients[i][3]
+        texture += recipe[i] * ingridients[i][4]
+        cal += recipe[i] * ingridients[i][5]
+        i += 1 
+    if capacity < 0:
+        capacity = 0
+    if durability < 0:
+        durability = 0
+    if flavor < 0:
+        flavor = 0
+    if texture < 0:
+        texture = 0
+    if cal != 500:
+        return 0
+    result = capacity * durability * flavor * texture
+    return result
+
 def check_possible_recipes(input_raw, teaspoons):
     ingridients = get_ingridients(input_raw)
     possible_combs = create_all_ingr_comb(teaspoons, ingridients)
@@ -77,6 +105,19 @@ def check_possible_recipes(input_raw, teaspoons):
         if result < eval_recipe(comb, ingridients):
             result = eval_recipe(comb, ingridients)
             best_comb = comb
+    print(best_comb)
+    return result
+
+def check_possible_recipes_v2(input_raw, teaspoons):
+    ingridients = get_ingridients(input_raw)
+    possible_combs = create_all_ingr_comb(teaspoons, ingridients)
+    result = 0
+    best_comb = []
+    for comb in possible_combs:
+        if result < eval_recipe_v2(comb, ingridients):
+            result = eval_recipe_v2(comb, ingridients)
+            best_comb = comb
+    print(best_comb)
     return result
 
 ### main 
@@ -93,11 +134,12 @@ elif mode == "TEST":
     teaspoons = test_teaspoons
 
 result = check_possible_recipes(input, teaspoons)
+result2 = check_possible_recipes_v2(input, teaspoons)
 
 if mode == "TASK":
     print("Task 1: " + str(result))
-    # print("Task 2: " + str(result))
+    print("Task 2: " + str(result2))
 elif mode == "TEST":
     print("Test 1: " + str(int(test_result2) == result) + "\n    Expected test result 1: " + str(test_result2) + "   |   Actual test result 1: " + str(result))
-    # print("Test 2: " + str(int(test_result) == result) + "\n    Expected test result 2: " + str(test_result) + "   |   Actual test result 2: " + str(result))
+    print("Test 2: " + str(int(test_result3) == result2) + "\n    Expected test result 2: " + str(test_result3) + "   |   Actual test result 2: " + str(result2))
 print()
