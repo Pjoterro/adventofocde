@@ -40,13 +40,11 @@ def find_least_containers(all_comb):
     for comb in all_comb:
         if len(comb) < len(least):
             least = comb
-    # print(least)
     least_numb = len(least)
     result = []
     for comb in all_comb:
         if len(comb) == least_numb:
             result.append(comb)
-    # print(result)
     return result
 
 
