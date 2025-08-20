@@ -1,12 +1,12 @@
 ### test cases:
-test = """
-.#.#.#
+test = """.#.#.#
 ...##.
 #....#
 ..#...
 #.#..#
 ####.."""
 test_steps = """4"""
+test_steps2 = """5"""
 test_result1 = """......
 ......
 ..##..
@@ -14,6 +14,7 @@ test_result1 = """......
 ......
 ......"""
 test_result2 = """4"""
+test_result3 = """17"""
 
 ### input file path
 input_path = """.\\2015\input_day18.txt""" # specific for windows
@@ -25,7 +26,7 @@ light_map = list(list())
 def parse_map(input):
     for line in input.splitlines():
         buffor = []
-        for symb in line.split():
+        for symb in line:
             buffor.append(symb)
         light_map.append(buffor)
     print("Map parsed!")
@@ -48,8 +49,8 @@ def get_neigbhours_coord(light_coord): # [x, y]
 
     results = []
     for coords in cands:
-        if coords[0] > 0 and coords[0] < map_x_size:
-            if coords[1] > 0 and coords[1] < map_y_size:
+        if coords[0] >= 0 and coords[0] < map_x_size:
+            if coords[1] >= 0 and coords[1] < map_y_size:
                 results.append(coords)
     return results
 
@@ -82,6 +83,15 @@ def perform_action():
     old_map.clear()
     light_map = new_map
 
+def light_up_corners():
+    global light_map
+    light_map[0][0] = "#"
+    light_map[0][-1] = "#"
+    light_map[-1][0] = "#"
+    light_map[-1][-1] = "#"
+    print_map()
+    print()
+
 def count_all_lit():
     result = 0
     for y in range(len(light_map)):
@@ -99,31 +109,43 @@ def print_map():
         print(buffer)
 
 ### main 
-mode = "TEST"
-# mode = "TASK"
+# mode = "TEST"
+mode = "TASK"
 
 print("\nMode: " + mode)
 if mode == "TASK":
     file = open(input_path)
     input = file.read()
     steps = int(task_steps)
+    steps2 = int(task_steps)
 elif mode == "TEST":
     input = test
     steps = int(test_steps)
+    steps2 = int(test_steps2)
 
 parse_map(input)
 i = 0
 while i < steps:
     perform_action()
-    print_map()
     i += 1
 result = count_all_lit()
+
+light_map.clear()
+
+parse_map(input)
+light_up_corners()
+i = 0
+while i < steps2:
+    perform_action()
+    light_up_corners()
+    i += 1
+result2 = count_all_lit()
 
 
 if mode == "TASK":
     print("Task 1: " + str(result))
-    # print("Task 2: " + str(result))
+    print("Task 2: " + str(result2))
 elif mode == "TEST":
     print("Test 1: " + str(int(test_result2) == result) + "\n    Expected test result 1: " + str(test_result2) + "   |   Actual test result 1: " + str(result))
-    # print("Test 2: " + str(int(test_result) == result) + "\n    Expected test result 2: " + str(test_result) + "   |   Actual test result 2: " + str(result))
+    print("Test 2: " + str(int(test_result3) == result2) + "\n    Expected test result 2: " + str(test_result3) + "   |   Actual test result 2: " + str(result2))
 print()
