@@ -89,8 +89,6 @@ def light_up_corners():
     light_map[0][-1] = "#"
     light_map[-1][0] = "#"
     light_map[-1][-1] = "#"
-    print_map()
-    print()
 
 def count_all_lit():
     result = 0
