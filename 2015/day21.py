@@ -25,7 +25,6 @@ def generate_all_items_combo():
         for arm in armor_comb:
             for rin in rings_comb:
                 result.append([weap, arm, rin[0], rin[1]])
-    print(len(result))
     return result
 
 def calculate_gear(gear_comb):
@@ -61,7 +60,6 @@ def find_cheapes_winning_gear():
     for gear_set in generate_all_items_combo():
         if is_player_winning_fight(boss, player, calculate_gear(gear_set)):
             result.append(gear_set)
-    print(len(result))
     cheapest_gear = result[0]
     price = calculate_gear(cheapest_gear)[0]
     for gear in result:
@@ -76,7 +74,6 @@ def find_priciest_loosing_gear():
     for gear_set in generate_all_items_combo():
         if not is_player_winning_fight(boss, player, calculate_gear(gear_set)):
             result.append(gear_set)
-    print(len(result))
     priciest_gear = result[0]
     price = calculate_gear(priciest_gear)[0]
     for gear in result:
