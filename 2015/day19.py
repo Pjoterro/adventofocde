@@ -5,9 +5,9 @@ H => HO
 H => OH
 O => HH
 
-HOH"""
-test_result = """4"""
-test_result_2 = """3"""
+HOHOHO"""
+test_result = """7"""
+test_result_2 = """6"""
 
 ### input file path
 input_path = """.\\2015\input_day19.txt""" # specific for windows
@@ -60,7 +60,7 @@ def reverse_engineer_drug(input):
         reduced_flag = False
         for sub in subs:
             while len(sub[1]) == longest_sub and sub[1] in compound_reduced:
-                compound_reduced = compound_reduced.replace(sub[1], sub[0])
+                compound_reduced = compound_reduced.replace(sub[1], sub[0], 1) # replace(x, y, 1) - bez tej jedynki zamienialo mi wszystko na raz
                 reduced_flag = True
                 longest_sub = get_longest_sub(subs)
                 result += 1
@@ -69,9 +69,6 @@ def reverse_engineer_drug(input):
     print(compound)
     print(compound_reduced)
     return result
-            
-                
-    
 
 ### main 
 # mode = "TEST"
